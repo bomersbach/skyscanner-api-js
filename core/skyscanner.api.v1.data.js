@@ -190,9 +190,9 @@ limitations under the License.
                 dataType: 'JSON',
                 data: query
             }).done(function (data, textStatus, xhr) {
-                var parts = xhr.getResponseHeader('Location').split('/');
+                var location = xhr.getResponseHeader('Location');
                 that._callCallback(LivePricingClient.ON_SESSION_CREATED, data, false);
-                dfd.resolveWith(that, [parts[parts.length - 1], query]);
+                dfd.resolveWith(that, location, query]);
             }).fail(function (xhr) {
                 if (xhr.status == 400) {
                     dfd.reject(LivePricingClient.ON_VALIDATION_FAILURE, that._composeRejection(xhr), 'session creation');
@@ -208,7 +208,7 @@ limitations under the License.
             that._callCallback(LivePricingClient.ON_SERVER_FAILURE, failure, source);
         };
 
-        LivePricingClient.prototype._pollForResults = function (sessionKey, query) {
+        LivePricingClient.prototype._pollForResults = function (location, query) {
             var that = this;
             var dfd = $.Deferred();
             var attemptCount = 0;
@@ -233,7 +233,7 @@ limitations under the License.
             var timeoutHandler = function () {
                 $.ajax({
                     type: 'GET',
-                    url: that._apiService + sessionKey,
+                    url: location,
                     dataType: 'JSON',
                     data: {
                         includecarriers: query.includecarriers,
