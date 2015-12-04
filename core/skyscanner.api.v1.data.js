@@ -192,7 +192,7 @@ limitations under the License.
             }).done(function (data, textStatus, xhr) {
                 var location = xhr.getResponseHeader('Location');
                 that._callCallback(LivePricingClient.ON_SESSION_CREATED, data, false);
-                dfd.resolveWith(that, location, query);
+                dfd.resolveWith(that, [location, query]);
             }).fail(function (xhr) {
                 if (xhr.status == 400) {
                     dfd.reject(LivePricingClient.ON_VALIDATION_FAILURE, that._composeRejection(xhr), 'session creation');
