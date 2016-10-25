@@ -5,40 +5,45 @@
         <title>Flights Live Pricing API Test Harness</title>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
         <link rel="stylesheet" href="css/style.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+        <script src="core/lodash.min.js" type="text/javascript"></script>
+
     </head>
-    
+
     <body>
+        <script src="core/skyscanner.api.v1.data.js" type="text/javascript"></script>
+        <script src="harness/harness.base.js" type="text/javascript"></script>
         <script src="harness/harness.v1.flights.js" type="text/javascript"></script>
 
         <h1>Flights Live Pricing API Test Harness</h1>
-        
+
         <div id="wholeresult">
             <fieldset>                <form name="query">
-            
-                    <div style="float:left;"> 
+
+                    <div style="float:left;">
                         <label for="apikey" id="apikey_label">Api Key</label>
                         <input type="text" name="apikey" id="apikey" value="" class="query-input apikey" />
                     </div>
 
                     <div style="clear:both;">
-                        <div style="float:left;"><label for="originplace">From</label><input class="query-input" type="text" id="originplace" value="EDI"/></div>
-                        <div style="float:left;"><label for="destinationplace">To</label><input class="query-input" type="text" id="destinationplace" value="LHR"/></div>
-                        <div style="float:left;"><label for="outbounddate">Outbound</label><input class="query-input" type="text" id="outbounddate" value=""/></div>
-                        <div style="float:left;"><label for="inbounddate">Inbound</label><input class="query-input" type="text" id="inbounddate" value=""/></div>
-                
+                        <div style="float:left;"><label for="originplace">From</label><input class="query-input" type="text" name="originplace" id="originplace" value="EDI"/></div>
+                        <div style="float:left;"><label for="destinationplace">To</label><input class="query-input" type="text" id="destinationplace" name="destinationplace" value="LHR"/></div>
+                        <div style="float:left;"><label for="outbounddate">Outbound</label><input class="query-input" type="text" id="outbounddate" name="outbounddate" value=""/></div>
+                        <div style="float:left;"><label for="inbounddate">Inbound</label><input class="query-input" type="text" id="inbounddate" name="inbounddate" value=""/></div>
+
                         <div style="float:left" class="market">
-                            <div style="float:left;"><label for="country">Country</label><input class="query-input" type="text" id="country" value="UK"/></div>
-                            <div style="float:left;"><label for="locale">Locale</label><input class="query-input" type="text" id="locale" value="en-GB"/></div>
-                            <div style="float:left;"><label for="currency">Currency</label><input class="query-input" type="text" id="currency" value="GBP"/></div>
+                            <div style="float:left;"><label for="country">Country</label><input class="query-input" type="text" id="country" name="country" value="UK"/></div>
+                            <div style="float:left;"><label for="locale">Locale</label><input class="query-input" type="text" id="locale" name="locale" value="en-GB"/></div>
+                            <div style="float:left;"><label for="currency">Currency</label><input class="query-input" type="text" id="currency" name="currency" value="GBP"/></div>
                         </div>
-                
+
                         <div style="float:left" class="passengers">
-                            <div style="float:left;"><label for="adults">Adults</label><input class="query-input" type="text" id="adults" value="1"/></div>
-                            <div style="float:left;"><label for="children">Children</label><input class="query-input" type="text" id="children" value="0"/></div>
-                            <div style="float:left;"><label for="infants">Infants</label><input class="query-input" type="text" id="infants" value="0"/></div>
+                            <div style="float:left;"><label for="adults">Adults</label><input class="query-input" type="text" id="adults" name="adults" value="1"/></div>
+                            <div style="float:left;"><label for="children">Children</label><input class="query-input" type="text" id="children" name="children" value="0"/></div>
+                            <div style="float:left;"><label for="infants">Infants</label><input class="query-input" type="text" id="infants" name="infants" value="0"/></div>
                         </div>
-            
+
                         <div style="float:left;">
                             <label for="locationschema">Location Schema</label>
                             <select id="locationschema">
@@ -48,7 +53,7 @@
                                 <option value="rnid">Rnid</option>
                                 <option value="sky">Sky</option>
                                 <option value="default">Default</option>
-                            </select>                        </div>                                    <div style="float:left;">
+                            </select>                        </div>                        <div style="float:left;">
                             <label for="cabinclass">Cabin Class</label>
                             <select id="cabinclass">
                                 <option value="Economy" selected>Economy</option>
@@ -59,12 +64,12 @@
                         </div>
 
                     </div>
-                    
+
                     <div style="clear:both;">
                         <input type="submit" value="Find Flights" id="btn-call" class="button"/>
                         <span id="hourglass"></span>
                     </div>
-                    
+
                     <div id="errors"></div>
                     <div><table id="resultstable" style="border: 0"></table></div>
                 </form>
@@ -73,5 +78,5 @@
 
         <script src="core/skyscanner.api.v1.data.js" type="text/javascript"></script>
     </body>
-    
+
 </html>
